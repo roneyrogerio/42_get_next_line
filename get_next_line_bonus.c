@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 10:46:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 15:05:41 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 15:39:28 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int		get_next_line(int fd, char **line)
 	t_gnl			*v;
 
 	v = &y[fd];
-	//*line = NULL;
 	while (!v->eol && fd >= 0 && line && BUFFER_SIZE > 0)
 	{
 		if (!(v->buffer = (char *)malloc(BUFFER_SIZE)))
@@ -114,7 +113,8 @@ int		get_next_line(int fd, char **line)
 		if (parser(v))
 			break ;
 	}
-	if (!v->eol && v->buffer && v->ret < 1)
+	if (fd >= 0 && BUFFER_SIZE > 0 && line &&
+		(!v->eol && v->buffer && v->ret < 1))
 		free(v->buffer);
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line || (!v->eol && v->ret < 0))
 		return (-1);

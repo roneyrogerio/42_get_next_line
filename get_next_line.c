@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:25:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/03/15 18:27:29 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 10:03:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int		list2line(t_gnl *v, char **line)
 			break ;
 	}
 	(*line)[i] = 0;
-	//v->free = *line;
 	return (v->list ? 1 : 0);
 }
 
@@ -98,8 +97,6 @@ int		get_next_line(int fd, char **line)
 {
 	static t_gnl	v;
 
-	//free(v.free);
-	//v.free = NULL;
 	*line = NULL;
 	while (!v.eol)
 	{
@@ -119,6 +116,5 @@ int		get_next_line(int fd, char **line)
 		free(v.buffer);
 	if (!v.eol && v.ret < 0)
 		return (-1);
-	//return (!v.eol && !v.list && v.ret == 0 ? 0 : list2line(&v, line));
 	return (list2line(&v, line));
 }

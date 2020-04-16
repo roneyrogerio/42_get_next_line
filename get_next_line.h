@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:48:16 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/03/15 18:10:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 10:03:26 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct	s_gnl
 	int		eol;
 	t_list	*list;
 	t_list	*last;
-	//char	*free;
 }				t_gnl;
 
 int				get_next_line(int fd, char **line);

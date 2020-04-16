@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:25:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 16:18:26 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 19:01:40 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ int		list2line(t_gnl *v, char **line)
 	{
 		while (v->list->len--)
 			(*line)[i++] = v->list->str[j++];
-		if (v->list->free)
-			free(v->list->free);
+		free(v->list->free);
 		ptr = v->list->next;
 		eol = v->list->eol;
 		free(v->list);
@@ -104,7 +103,10 @@ int		get_next_line(int fd, char **line)
 		if (!(v.buffer = (char *)malloc(BUFFER_SIZE)))
 			return (-1);
 		if ((v.ret = read(fd, v.buffer, BUFFER_SIZE)) < 1)
+		{
+			free(v.buffer);
 			break ;
+		}
 		if (!v.list)
 			v.list = lst_new(v.buffer, 0, v.buffer, v.ret);
 		else if (v.last)
@@ -113,8 +115,6 @@ int		get_next_line(int fd, char **line)
 		if (parser(&v))
 			break ;
 	}
-	if (fd >= 0 && BUFFER_SIZE > 0 && line && (!v.eol && v.buffer && v.ret < 1))
-		free(v.buffer);
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line || (!v.eol && v.ret < 0))
 		return (-1);
 	return (list2line(&v, line));

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 10:46:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 12:04:26 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 12:43:30 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		list2line(t_gnl *v, char **line)
 
 int		get_next_line(int fd, char **line)
 {
-	static t_gnl	y[1024];
+	static t_gnl	y[OPEN_MAX];
 	t_gnl			*v;
 
 	v = &y[fd];

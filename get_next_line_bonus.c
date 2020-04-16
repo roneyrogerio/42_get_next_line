@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 10:46:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 15:39:28 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/16 16:13:23 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_list	*lst_new(char *str, unsigned int eol, char *free, size_t len)
 {
 	t_list	*el;
 
-	el = (t_list *)malloc(sizeof(t_list));
+	if (!(el = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
 	el->str = str;
 	el->eol = eol;
 	el->free = free;
@@ -73,7 +74,8 @@ int		list2line(t_gnl *v, char **line)
 	t_list	*ptr;
 
 	i = 0;
-	*line = (char *)malloc(line_len(v->list) + 1);
+	if (!(*line = (char *)malloc(line_len(v->list) + 1)))
+		return (-1);
 	while (v->list && !(j = 0))
 	{
 		while (v->list->len--)

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 10:46:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 19:03:50 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/17 09:26:38 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		parser(t_gnl *v)
 		if (v->last->free[i] == '\n' && (v->eol += 1))
 		{
 			v->last->next = lst_new(&v->last->free[i + 1], 0, v->last->free, 0);
+			if (!v->last->next)
+				return (-1);
 			v->last->len = i - start;
 			v->last->eol = 1;
 			v->last->free = NULL;

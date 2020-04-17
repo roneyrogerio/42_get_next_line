@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:25:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/17 09:27:57 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/17 09:42:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		parser(t_gnl *v)
 	size_t	i;
 	size_t	start;
 
+	if (!v->last)
+		return (-1);
 	i = 0;
 	start = 0;
 	v->eol = 0;

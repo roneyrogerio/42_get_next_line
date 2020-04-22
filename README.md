@@ -1,4 +1,4 @@
-I did this function studying at 42. This function will get line by line one at a time, when called must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
+I did this function studying at 42. This function when called will get line by line one at a time, it must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
 
 You can run a test with command:\
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c main.c && ./a.out

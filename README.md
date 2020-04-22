@@ -1,7 +1,7 @@
 I did this function studying at 42. This function when called must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
 
 You can run a test with command:\
-gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c main.c && ./a.out
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c main.c && ./a.out
 
 result:\
 return=1, line=file1 line 1\

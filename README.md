@@ -79,3 +79,5 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 | *next     | NULL                  |
 
 Note that string is a pointer to the buffer, it is not a copy of the buffer, my linked list is marking inside the buffer what is relative to each line, but at no time do I reallocate the buffer, it works faster in most cases. now that i have at least one line loaded in my linked list i no longer need to read the file to return the first line, just loop through linked list and return only what is referring to the first line.
+
+look at the source code for more details, bye.

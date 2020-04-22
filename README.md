@@ -8,4 +8,13 @@ return=1, line=file1 line 1\
 return=1, line=file1 line 2\
 return=0, line=file1 line 3
 
-**Note that the function return in the last line is 0 if the file does not ending with an EOL (\\n).**
+**Note that the function return in the last line is 0 if the file does not ending with an EOL (\\n).*
+
+| Fild   | Definition                                                            |
+|--------|-----------------------------------------------------------------------|
+| string | pointer to the position of element string start on the buffer         |
+| len    | the length from the string start to the end of the line or buffer     |
+| eol    | =1 if this element is the end of line, =0 if not                      |
+| free   | pointer to the buffer start if this is the last element of the buffer |
+| next   | pointer to the next element                                           |
+

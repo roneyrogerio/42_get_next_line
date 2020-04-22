@@ -14,7 +14,7 @@ return=0, line=file1 line 3
 
 Basically I have a linked list where each element of the list looks like this:
 
-| Fild     | Definition                                                            |
+| Fild      | Definition                                                            |
 |-----------|-----------------------------------------------------------------------|
 | *string   | pointer to the position of element string start on the buffer         |
 | *int* len | the length from the string start to the end of the line or buffer     |
@@ -48,7 +48,7 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 
 | Fild      | value                 |
 |-----------|-----------------------|
-| *string   | \\ng h\\ni j l\\n     |
+| *string   | g h\\ni j l\\n        |
 | len       | 0                     |
 | eol       | 1                     |
 | *free_buf | NULL                  |
@@ -59,7 +59,7 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 | *string   | g h\\ni j l\\n        |
 | len       | 3                     |
 | eol       | 1                     |
-| *free_buf | pointer to the buffer |
+| *free_buf | NULL                  |
 | *next     | points to the next el |
 
 | Fild      | value                 |
@@ -67,6 +67,15 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 | *string   | i j l\\n              |
 | len       | 5                     |
 | eol       | 1                     |
+| *free_buf | NULL                  |
+| *next     | points to the next el |
+
+| Fild      | value                 |
+|-----------|-----------------------|
+| *string   |                       |
+| len       | 0                     |
+| eol       | 1                     |
 | *free_buf | pointer to the buffer |
 | *next     | NULL                  |
 
+Note that string is a pointer to the buffer, it is not a copy of the buffer, my linked list is marking inside the buffer what is relative to each line, but at no time do I reallocate the buffer, it works faster in most cases. now that i have at least one line loaded in my linked list i no longer need to read the file to return the first line, just loop through linked list and return only what is referring to the first line.

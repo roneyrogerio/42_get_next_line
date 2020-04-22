@@ -48,7 +48,7 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 
 | Fild      | value                 |
 |-----------|-----------------------|
-| *string   | g h\\ni j l\\n        |
+| *string   | \\ng h\\ni j l\\n     |
 | len       | 0                     |
 | eol       | 1                     |
 | *free_buf | NULL                  |
@@ -74,7 +74,7 @@ The string points to the buffer, and free_buf will be used to free the buffer wh
 |-----------|-----------------------|
 | *string   |                       |
 | len       | 0                     |
-| eol       | 1                     |
+| eol       | 0                     |
 | *free_buf | pointer to the buffer |
 | *next     | NULL                  |
 

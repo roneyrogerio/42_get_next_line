@@ -7,20 +7,11 @@ int	main(void)
 {
 	int	fd;
 	char	*line;
+	int	ret;
 
 	fd = open("test", O_RDONLY);
-	get_next_line(fd, &line);
-	printf("%s", line);
-	printf("\n");
-	get_next_line(fd, &line);
-	printf("%s", line);
-	printf("\n");
-	get_next_line(fd, &line);
-	printf("%s", line);
-	printf("\n");
-	get_next_line(fd, &line);
-	printf("%s", line);
-	printf("\n");
-	close(fd);
+	while ((ret = get_next_line(fd, &line)))
+		printf("return=%d, line=%s\n", ret, line);
+	printf("return=%d, line=%s\n", ret, line);
 	return (0);
 }

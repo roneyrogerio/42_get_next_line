@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 15:48:16 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/16 10:03:26 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/04/23 09:28:19 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/04/24 12:41:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,28 @@
 typedef struct	s_list
 {
 	char			*str;
-	int				eol;
-	char			*free;
-	size_t			len;
 	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_gnl
+typedef	struct	s_pseudo_fd
 {
-	char	*buffer;
-	int		ret;
-	int		eol;
-	t_list	*list;
-	t_list	*last;
-}				t_gnl;
+# if BUFFER_SIZE > 0
+
+	char	buf[BUFFER_SIZE];
+# endif
+# if BUFFER_SIZE <= 0
+
+	char	buf[0];
+# endif
+
+	int		size;
+	int		offset;
+	t_list	*line_liststart;
+	t_list	*line_listlast;
+	int		list_hasline;
+	int		list_linelen;
+	int		i;
+}				t_pseudo_fd;
 
 int				get_next_line(int fd, char **line);
 

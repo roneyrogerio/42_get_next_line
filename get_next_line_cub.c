@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_cub.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 09:34:55 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/04/24 09:54:30 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/04/24 12:42:45 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,15 @@ int		list2line(t_pseudo_fd *pfd, char **line)
 	t_list	*ptr;
 
 	j = 0;
-	ret = pfd->list_hasline;
-	if (!(*line = (char *)malloc(pfd->list_linelen + 1)))
+	ret = pfd->list_linelen;
+	if (ret && !(*line = (char *)malloc(pfd->list_linelen + 1)))
 		return (-1);
-	(*line)[pfd->list_linelen] = '\0';
+	if (ret)
+		(*line)[pfd->list_linelen] = '\0';
 	while (pfd->line_liststart)
 	{
 		i = 0;
-		while (pfd->line_liststart && pfd->line_liststart->str[i])
+		while (ret && pfd->line_liststart && pfd->line_liststart->str[i])
 			(*line)[j++] = pfd->line_liststart->str[i++];
 		free(pfd->line_liststart->str);
 		ptr = pfd->line_liststart->next;
@@ -88,7 +89,7 @@ int		list2line(t_pseudo_fd *pfd, char **line)
 	pfd->list_linelen = 0;
 	pfd->list_hasline = 0;
 	pfd->line_listlast = NULL;
-	return (ret);
+	return (ret ? ret : -1);
 }
 
 int		get_next_line(int fd, char **line)

@@ -12,7 +12,7 @@ return=0, line=file1 line 3
 
 **Note that the function return in the last line is 0 if the file does not ending with an EOL (\\n).*
 
-# My own logic for the exercise solution
+# My own logic to solve the exercise
 
 I use linked list. The function has two structures, one is static and remains in the next function call, the second is used in the linked list.
 

@@ -22,7 +22,7 @@ When the function is called it will verify if there is already a loaded line ins
 
 When there are lines in the linked list, the function will transfers the string of each element to **line that was passed in the function argument and and free all elements of the linked list.
 
-When there are no lines loaded in the linked list, the function reads the file (receiving n bytes defined in BUFFER_SIZE). If in the received buffer there is at least one newline it creates an new element, and only one new element, where the string of that element will contain everything before that newline, an offset is also saved in the static variable indicating the initial position in the buffer that has not yet been used. If the buffer has no newline, the entire contents of the buffer are copied to the string of a new element in the linked list.
+When there are no lines loaded in the linked list, the function reads the file (receiving n bytes defined in BUFFER_SIZE). If in the received buffer there is at least one newline it creates a new element, and only one new element, where the string of that element will contain everything before that newline, an offset is also saved in the static variable indicating the initial position in the buffer that has not yet been used. If the buffer has no newline, the entire contents of the buffer are copied to the string of a new element in the linked list.
 
 When a new line is requested, it is checked if any part of the last buffer stored in the static needs to be used. If it exists, that part is transferred to the linked list.
 

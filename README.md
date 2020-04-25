@@ -1,6 +1,6 @@
 I did this function during my studies at 42. This function uses only read (unistd.h) and malloc (stdlib.h). It must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line. When called will get line by line one at a time.
 
-This is not my first version, the first is in [v1.0](https://github.com/roneyrogerio/get_next_line/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
+This get_next_line.c is not my first version, the first is in [v1.0](https://github.com/roneyrogerio/get_next_line/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
 
 You can run a test with command:
 ```bash
@@ -30,7 +30,7 @@ Look at the source code if you want to understand in detail.
 
 # The get_next_line_cub.c version
 
-The version get_next_line_cub.c is a more friendly version to use in a real situation. I created it to use in my next project, cub3d. It works similar to getline, it returns the number of bytes of each line and returns -1 when there are no more lines.
+The version get_next_line_cub.c is a more friendly version to use in a real situation. I created it to use in my next project, cub3d. It works similar to getline (from stdio.h), it returns the number of bytes of each line and returns -1 when there are no more lines.
 
 You can run a test with command:
 ```bash

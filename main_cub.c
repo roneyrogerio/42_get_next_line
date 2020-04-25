@@ -10,13 +10,12 @@ int	main(void)
 	int	ret;
 
 	fd = open("test", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
+	while ((ret = get_next_line(fd, &line)) != -1)
 	{
 		printf("return=%d, line=%s\n", ret, line);
 		free(line);
 	}
 	printf("return=%d, line=%s\n", ret, line);
-	free(line);
 	
 	return (0);
 }

@@ -1,6 +1,6 @@
-I did this function during my studies at 42. This is not my first version, the first is in [v1.0](https://github.com/roneyrogerio/get_next_line/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
+I did this function during my studies at 42. This function uses only read (unistd.h) and malloc (stdlib.h). It must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line. When called will get line by line one at a time.
 
-This function when called will get line by line one at a time, it must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
+This is not my first version, the first is in [v1.0](https://github.com/roneyrogerio/get_next_line/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
 
 You can run a test with command:\
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c main.c && ./a.out

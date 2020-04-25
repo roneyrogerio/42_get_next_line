@@ -1,4 +1,6 @@
-I did this function studying at 42. This function when called will get line by line one at a time, it must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
+I did this function during my studies at 42. This is not my first version, the first is in [v1.0](/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
+
+This function when called will get line by line one at a time, it must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
 
 You can run a test with command:\
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c main.c && ./a.out
@@ -12,72 +14,10 @@ return=0, line=file1 line 3
 
 # My own logic for the exercise solution
 
-Basically I have a linked list where each element of the list looks like this:
+I use linked list. The function has two structures, one is static and remains in the next function call, the second is used in the linked list.
 
-| Fild      | Definition                                                            |
-|-----------|-----------------------------------------------------------------------|
-| *string   | pointer to the position of element string start on the buffer         |
-| *int* len | the length from the string start to the end of the line or buffer     |
-| *int* eol | =1 if this element is the end of line, =0 if not                      |
-| *free_buf | pointer to the buffer start if this is the last element of the buffer |
-| *next     | pointer to the next element                                           |
+When the function is called it will verify if there is already a loaded line inside the linked list, for this there is a field in my static variable that indicates this.
 
-let's assume we have a file with the following content:
+When there are lines the function will transfers the string of each element to **line that was passed in the function argument.
 
-a b c d e f\\ng h\\ni j l\\n m n o p q...
-
-In a real situation, when i read a text file with a limited BUFFER_SIZE i don't know if what i will receive will be 0, 1, 2, 100, 1000 ... lines. In the example when i read the file using BUFFER_SIZE=11 i do not get any \\n in my buffer and i need to do a new reading, but this way i keep that first buffer/string in an element of my linked list:
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   | a b c d e f           |
-| len       | 11                    |
-| eol       | 0                     |
-| *free_buf | pointer to the buffer |
-| *next     | NULL                  |
-
-The string points to the buffer, and free_buf will be used to free the buffer when it is fully used, the string will not always point to the start of the buffer, see nexte example. Whem i continue to read the file more 11 bytes will be loaded and i will get on buffer "\\ng h\\ni j l\\n", this will be separated into several elements, no element of the list can have more than one line:
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   | a b c d e f           |
-| len       | 11                    |
-| eol       | 0                     |
-| *free_buf | pointer to the buffer |
-| *next     | points to the next el |
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   | \\ng h\\ni j l\\n     |
-| len       | 0                     |
-| eol       | 1                     |
-| *free_buf | NULL                  |
-| *next     | points to the next el |
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   | g h\\ni j l\\n        |
-| len       | 3                     |
-| eol       | 1                     |
-| *free_buf | NULL                  |
-| *next     | points to the next el |
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   | i j l\\n              |
-| len       | 5                     |
-| eol       | 1                     |
-| *free_buf | NULL                  |
-| *next     | points to the next el |
-
-| Fild      | value                 |
-|-----------|-----------------------|
-| *string   |                       |
-| len       | 0                     |
-| eol       | 0                     |
-| *free_buf | pointer to the buffer |
-| *next     | NULL                  |
-
-Note that string is a pointer to the buffer, it is not a copy of the buffer, my linked list is marking inside the buffer what is relative to each line, but at no time do I reallocate the buffer, it works faster in most cases. now that i have at least one line loaded in my linked list i no longer need to read the file to return the first line, just loop through linked list and return only what is referring to the first line.
-
-look at the source code for more details, bye.
+When there are no lines loaded in the linked list, the function reads the file (receiving n bytes defined in BUFFER_SIZE), then creates an new element in the linked list. If in the received buffer there is at least one newline it creates an new element, and only one new element, where the string of that element will contain everything before that newline, an offset is also saved in the statistical variable indicating the initial position in the buffer that has not yet been used. . If the buffer has no newline, the entire contents of the buffer are copied to the string of a new element in the linked list.

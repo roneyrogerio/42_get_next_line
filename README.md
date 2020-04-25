@@ -30,7 +30,7 @@ Look at the source code if you want to understand in detail.
 
 # The get_next_line_cub.c version
 
-The version get_next_line_cub.c is a more friendly version to use in a real situation. I created it to use in my next project, cub3d. It works similar to getline, it returns the number of bytes of each line and returns -1 when there are no more lines.
+The version get_next_line_cub.c is a more friendly version to use in a real situation. I created it to use in my next project, cub3d. It works similar to getline (from stdio.h), it returns the number of bytes of each line and returns -1 when there are no more lines.
 
 You can run a test with command:
 ```bash

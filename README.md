@@ -18,6 +18,6 @@ I use linked list. The function has two structures, one is static and remains in
 
 When the function is called it will verify if there is already a loaded line inside the linked list, for this there is a field in my static variable that indicates this.
 
-When there are lines the function will transfers the string of each element to **line that was passed in the function argument.
+When there are lines the function will transfers the string of each element to **line that was passed in the function argument and and free all elements of the linked list.
 
 When there are no lines loaded in the linked list, the function reads the file (receiving n bytes defined in BUFFER_SIZE), then creates an new element in the linked list. If in the received buffer there is at least one newline it creates an new element, and only one new element, where the string of that element will contain everything before that newline, an offset is also saved in the statistical variable indicating the initial position in the buffer that has not yet been used. . If the buffer has no newline, the entire contents of the buffer are copied to the string of a new element in the linked list.

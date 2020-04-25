@@ -1,4 +1,4 @@
-I did this function during my studies at 42. This is not my first version, the first is in [v1.0](/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
+I did this function during my studies at 42. This is not my first version, the first is in [v1.0](https://github.com/roneyrogerio/get_next_line/tree/v1.0). In comparison with the old one it solves some issues, for example with this it is possible to not read a file until the end and still not have a memory leak, besides other improvements.
 
 This function when called will get line by line one at a time, it must receive a file descriptor generated with open (from fcntl.h) and a pointer of pointer where the function will put the found line.
 
